@@ -46,7 +46,7 @@ local function autoKen()
     local kenHaki = CharacterModel.Services.KenHaki
     local kenEvent = game:GetService("ReplicatedStorage"):WaitForChild("Chest"):WaitForChild("Remotes"):WaitForChild("Functions"):WaitForChild("KenEvent")
 
-    if not kenOpen.value then kenEvent:InvokeServer() end    
+    if not kenOpen.Value then kenEvent:InvokeServer() end    
 
     kenHaki.Changed:Connect(function(kenValue)
         if (kenValue == 1 or kenValue == 8) and not kenOpen.Value then kenEvent:InvokeServer() end  
@@ -361,7 +361,7 @@ local Stats = Window:Tab({Title = "Stats", Locked = false,})
 
 local statsParagraph = Stats:Paragraph({Title = "Stats", Locked = false,})
 
-local untilParagraph = Stats:Paragraph({Title = "Second Sea", Desc, Locked = false,})
+local untilParagraph = Stats:Paragraph({Title = "Second Sea", Desc = "", Locked = false,})
 ReplicatedStorage:GetAttributeChangedSignal("GhostShipSpawnText"):Connect(function()
 local untilSeaMonster = ReplicatedStorage:GetAttribute("SeaMonsterSpawnText")    
 local untilGhostShip = ReplicatedStorage:GetAttribute("GhostShipSpawnText") 
@@ -390,7 +390,7 @@ local function enableAutoFarm()
 end 
 local function disableAutoFarm()
     task.cancel(Farm)
-    HumanoidRootPart.CFrame = Vector3.new(0,20,0)
+   HumanoidRootPart.CFrame = CFrame.new(0,20,0)
     HumanoidRootPart.Anchored = false
 end
 
@@ -529,7 +529,7 @@ local selectKeyDropdown = chest:Dropdown({
         "Platinum Key",
         "Diamond Key",
     },
-    Desc,
+    Desc"", --
     Value = "Key",
     Callback = function(option) 
         SelectedKey = option
